@@ -22,6 +22,12 @@ class PromiseController:
 
     def add_promise(self):
         pid, desc, date, status = self.view.get_promise_input()
+        
+        politician = self.politician_model.get_politician_by_id(pid)
+        if not politician:
+            self.view.show_message(f"Error: Politician ID {pid} not found. Cannot add promise.")
+            return
+
         promise = self.promise_model.add_promise(pid, desc, date, status)
         self.view.show_message(f"Promise added successfully with ID {promise.promise_id}!")
 

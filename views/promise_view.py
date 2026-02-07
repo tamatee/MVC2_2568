@@ -1,3 +1,5 @@
+from utils.input_helper import get_valid_string, get_valid_integer, get_valid_date, get_valid_choice
+
 class PromiseView:
     def show_menu(self):
         print("\n--- Promise Management ---")
@@ -9,25 +11,25 @@ class PromiseView:
         return input("Enter your choice: ")
 
     def get_promise_input(self):
-        politician_id = input("Enter Politician ID: ")
-        description = input("Enter Promise Description: ")
-        date_announced = input("Enter Date Announced: ")
-        status = input("Enter Status (Not Started/In Progress/Silent): ")
+        politician_id = str(get_valid_integer("Enter Politician ID: "))
+        description = get_valid_string("Enter Promise Description: ")
+        date_announced = get_valid_date("Enter Date Announced (YYYY-MM-DD): ")
+        status = get_valid_choice("Enter Status (Not Started/In Progress/Silent): ", ["Not Started", "In Progress", "Silent"])
         return politician_id, description, date_announced, status
 
     def get_update_input(self):
-        promise_id = input("Enter Promise ID to update: ")
-        update_date = input("Enter Update Date: ")
-        detail = input("Enter Progress Detail: ")
+        promise_id = str(get_valid_integer("Enter Promise ID to update: "))
+        update_date = get_valid_date("Enter Update Date (YYYY-MM-DD): ")
+        detail = get_valid_string("Enter Progress Detail: ")
         return promise_id, update_date, detail
 
     def get_update_detail_input(self):
-        update_date = input("Enter Update Date: ")
-        detail = input("Enter Progress Detail: ")
+        update_date = get_valid_date("Enter Update Date (YYYY-MM-DD): ")
+        detail = get_valid_string("Enter Progress Detail: ")
         return update_date, detail
 
     def get_promise_id(self):
-        return input("Enter Promise ID: ")
+        return str(get_valid_integer("Enter Promise ID: "))
 
     def show_promises(self, promises):
         print("\n--- List of Promises ---")

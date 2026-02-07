@@ -1,3 +1,5 @@
+from utils.input_helper import get_valid_string, get_valid_integer
+
 class CampaignView:
     def show_menu(self):
         print("\n--- Campaign Management ---")
@@ -7,8 +9,8 @@ class CampaignView:
         return input("Enter your choice: ")
 
     def get_campaign_input(self):
-        year = input("Enter Election Year: ")
-        constituency = input("Enter Constituency: ")
+        year = str(get_valid_integer("Enter Election Year: "))
+        constituency = get_valid_string("Enter Constituency: ")
         return year, constituency
 
     def show_campaigns(self, campaigns):

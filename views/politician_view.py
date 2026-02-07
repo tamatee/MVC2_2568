@@ -1,3 +1,5 @@
+from utils.input_helper import get_valid_string, get_valid_integer, get_valid_politician_id
+
 class PoliticianView:
     def show_menu(self):
         print("\n--- Politician Management ---")
@@ -8,9 +10,10 @@ class PoliticianView:
         return input("Enter your choice: ")
 
     def get_politician_input(self):
-        name = input("Enter Name: ")
-        party = input("Enter Party: ")
-        return name, party
+        pid = get_valid_politician_id("Enter Politician ID (8 digits, no leading 0): ")
+        name = get_valid_string("Enter Name: ")
+        party = get_valid_string("Enter Party: ")
+        return pid, name, party
 
     def show_politicians(self, politicians):
         print("\n--- List of Politicians ---")
@@ -23,7 +26,7 @@ class PoliticianView:
                 print(f"{p.politician_id:<15} {p.name:<30} {p.party}")
 
     def get_politician_id(self):
-        return input("Enter Politician ID: ")
+        return str(get_valid_integer("Enter Politician ID: "))
 
     def show_politician_detail(self, politician, promises):
         print("\n--- Politician Profile ---")

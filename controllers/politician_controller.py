@@ -7,8 +7,13 @@ class PoliticianController:
         self.promise_model = promise_model
 
     def add_politician(self):
-        name, party = self.view.get_politician_input()
-        politician = self.model.add_politician(name, party)
+        pid, name, party = self.view.get_politician_input()
+        
+        if self.model.get_politician_by_id(pid):
+            self.view.show_message(f"Error: Politician ID {pid} already exists.")
+            return
+
+        politician = self.model.add_politician(pid, name, party)
         self.view.show_message(f"Politician '{name}' added successfully with ID {politician.politician_id}!")
 
     def show_politicians(self):

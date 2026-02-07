@@ -1,3 +1,5 @@
+from utils.input_helper import get_valid_string, get_valid_choice
+
 class UserView:
     def show_menu(self):
         print("\n--- User Management System ---")
@@ -8,10 +10,10 @@ class UserView:
         return choice
 
     def get_user_input(self):
-        username = input("Enter username: ")
-        email = input("Enter email: ")
-        password = input("Enter password: ")
-        role = input("Enter role (admin/user): ")
+        username = get_valid_string("Enter username: ")
+        email = get_valid_string("Enter email: ")
+        password = get_valid_string("Enter password: ")
+        role = get_valid_choice("Enter role (admin/user): ", ["admin", "user"])
         return username, email, password, role
 
     def show_users(self, users):

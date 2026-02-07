@@ -55,15 +55,13 @@ class PoliticianRepository:
         max_id = max(existing_ids)
         return str(max_id + 1)
 
-    def add_politician(self, name, party):
-        politician_id = self.generate_id()
+    def add_politician(self, politician_id, name, party):
         politician = Politician(politician_id, name, party)
         self.politicians.append(politician)
         self.save_politicians()
         return politician
 
     def get_all_politicians(self):
-        # Sort by ID as requested
         return sorted(self.politicians, key=lambda x: int(x.politician_id))
     
     def get_politician_by_id(self, politician_id):
