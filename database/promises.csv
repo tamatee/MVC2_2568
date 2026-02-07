@@ -1,0 +1,11 @@
+promise_id,politician_id,description,date_announced,status
+1,10000001,Increase minimum wage to 500 THB,2025-05-01,In Progress
+2,10000001,Reduce electricity bills,2025-06-01,Not Started
+3,10000002,Free education for all,2025-05-15,Silent
+4,10000002,Build high-speed train,2025-07-01,In Progress
+5,10000003,Reform military,2025-05-20,In Progress
+6,10000003,Decentralize power,2025-08-01,Not Started
+7,10000004,Subsidize rubber prices,2025-05-10,Silent
+8,10000004,Clean water for every village,2025-09-01,Not Started
+9,10000005,Legalize cannabis for medical use,2025-04-01,Silent
+10,10000005,Improve healthcare facilities,2025-10-01,In Progress
