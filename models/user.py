@@ -2,15 +2,15 @@ import csv
 import os
 
 class User:
-    def __init__(self, user_id, username, email, password, role="user"):
+    def __init__(self, user_id, username, email, password):
         self.user_id = user_id
         self.username = username
         self.email = email
         self.password = password
-        self.role = role
+        self.password = password
 
     def __str__(self):
-        return f"User(id={self.user_id}, username='{self.username}', role='{self.role}')"
+        return f"User(id={self.user_id}, username='{self.username}')"
 
 class UserRepository:
     def __init__(self, filename='database/users.csv'):
@@ -24,7 +24,7 @@ class UserRepository:
         if not os.path.exists(self.filename):
             with open(self.filename, mode='w', newline='') as file:
                 writer = csv.writer(file)
-                writer.writerow(['id', 'username', 'email', 'password', 'role'])
+                writer.writerow(['id', 'username', 'email', 'password'])
 
     def load_users(self):
         self.users = []
@@ -36,15 +36,15 @@ class UserRepository:
                 except StopIteration:
                     pass
                 for row in reader:
-                    if row and len(row) >= 5:
-                        self.users.append(User(row[0], row[1], row[2], row[3], row[4]))
+                    if row and len(row) >= 4:
+                        self.users.append(User(row[0], row[1], row[2], row[3]))
 
     def save_users(self):
         with open(self.filename, mode='w', newline='') as file:
             writer = csv.writer(file)
-            writer.writerow(['id', 'username', 'email', 'password', 'role'])
+            writer.writerow(['id', 'username', 'email', 'password'])
             for user in self.users:
-                writer.writerow([user.user_id, user.username, user.email, user.password, user.role])
+                writer.writerow([user.user_id, user.username, user.email, user.password])
 
     def generate_id(self):
         if not self.users:
@@ -60,9 +60,9 @@ class UserRepository:
                 continue
         return str(max_id + 1)
 
-    def add_user(self, username, email, password, role='user'):
+    def add_user(self, username, email, password):
         user_id = self.generate_id()
-        user = User(user_id, username, email, password, role)
+        user = User(user_id, username, email, password)
         self.users.append(user)
         self.save_users()
         return user

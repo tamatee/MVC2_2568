@@ -48,40 +48,23 @@ def main():
             continue
 
     while True:
-        role = auth_controller.current_user['role']
-        choice = main_view.show_main_menu(role)
+        choice = main_view.show_main_menu()
         
-        if role == 'admin':
-            if choice == '1':
-                user_controller.run()
-            elif choice == '2':
-                 politician_controller.run()
-            elif choice == '3':
-                campaign_controller.run()
-            elif choice == '4':
-                promise_controller.run()
-            elif choice == '5':
-                auth_controller.logout()
-                while not auth_controller.is_logged_in():
-                    if not auth_controller.login():
-                        continue
-            else:
-                main_view.show_message("Invalid selection. Please try again.")
+        if choice == '1':
+            user_controller.run()
+        elif choice == '2':
+             politician_controller.run()
+        elif choice == '3':
+            campaign_controller.run()
+        elif choice == '4':
+            promise_controller.run()
+        elif choice == '5':
+            auth_controller.logout()
+            while not auth_controller.is_logged_in():
+                if not auth_controller.login():
+                    continue
         else:
-            # User Role Actions
-            if choice == '1':
-                politician_controller.show_politicians()
-                input("Press Enter to continue...")
-            elif choice == '2':
-                promise_controller.show_promises()
-                input("Press Enter to continue...")
-            elif choice == '3':
-                auth_controller.logout()
-                while not auth_controller.is_logged_in():
-                    if not auth_controller.login():
-                        continue
-            else:
-                main_view.show_message("Invalid selection. Please try again.")
+            main_view.show_message("Invalid selection. Please try again.")
 
 if __name__ == "__main__":
     main()

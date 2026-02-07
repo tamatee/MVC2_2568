@@ -6,9 +6,9 @@ class UserController:
         self.view = view
 
     def add_user(self):
-        username, email, password, role = self.view.get_user_input()
+        username, email, password = self.view.get_user_input()
         # ID is generated inside the model now
-        user = self.model.add_user(username, email, password, role)
+        user = self.model.add_user(username, email, password)
         self.view.show_message(f"User {username} added successfully with ID {user.user_id}!")
 
     def show_users(self):

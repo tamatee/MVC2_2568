@@ -33,7 +33,8 @@ def seed_data():
 
     created_politicians = []
     for name, party in politicians_data:
-        p = politician_repo.add_politician(name, party)
+        pid = politician_repo.generate_id()
+        p = politician_repo.add_politician(pid, name, party)
         created_politicians.append(p)
         print(f"Added Politician: {p.name} (ID: {p.politician_id})")
 
@@ -58,14 +59,14 @@ def seed_data():
         
     print("\nSeeding Users...")
     users_data = [
-        ("admin", "admin@example.com", "admin123", "admin"),
-        ("user1", "user1@example.com", "user123", "user"),
-        ("user2", "user2@example.com", "user123", "user")
+        ("user1", "user1@example.com", "1234"),
+        ("user2", "user2@example.com", "1234"),
+        ("user3", "user3@example.com", "1234")
     ]
     
-    for username, email, password, role in users_data:
-        u = user_repo.add_user(username, email, password, role)
-        print(f"Added User: {u.username} ({u.role})")
+    for username, email, password in users_data:
+        u = user_repo.add_user(username, email, password)
+        print(f"Added User: {u.username}")
 
     print("\nSeeding Campaigns...")
     campaigns_data = [

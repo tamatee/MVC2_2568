@@ -11,8 +11,8 @@ class AuthController:
         user = self.user_repo.find_user_by_username(username)
 
         if user and user.password == password:
-            self.current_user = {'username': user.username, 'role': user.role}
-            self.view.show_message(f"Login successful! Welcome, {username} ({user.role}).")
+            self.current_user = {'username': user.username}
+            self.view.show_message(f"Login successful! Welcome, {username}.")
             return True
         
 
@@ -24,7 +24,7 @@ class AuthController:
         self.view.show_message("Logged out successfully.")
 
     def is_admin(self):
-        return self.current_user and self.current_user["role"] == "admin"
+        return self.current_user is not None
 
     def is_logged_in(self):
         return self.current_user is not None
